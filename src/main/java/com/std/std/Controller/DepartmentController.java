@@ -29,7 +29,7 @@ public class DepartmentController {
     // Get department by id
 
     @GetMapping("/{id}")
-    public ResponseEntity<Department> getDepartmentById(@PathVariable Long id) {
+    public ResponseEntity<Department> getDepartmentById(@PathVariable Integer id) {
         Optional<Department> department = departmentService.getDepartmentById(id);
         return department.map(value -> ResponseEntity.ok().body(value))
                 .orElseGet(() -> ResponseEntity.notFound().build());
@@ -45,7 +45,7 @@ public class DepartmentController {
     // Update an existing department by id
 
     @PutMapping("/{id}")
-    public ResponseEntity<Department> updateDepartment(@PathVariable Long id, @RequestBody Department department) {
+    public ResponseEntity<Department> updateDepartment(@PathVariable Integer id, @RequestBody Department department) {
         Optional<Department> existingDepartment = departmentService.getDepartmentById(id);
         if (existingDepartment.isPresent()) {
             Department updatedDepartment = existingDepartment.get();
@@ -61,7 +61,7 @@ public class DepartmentController {
     // Delete a department by id
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteDepartmentById(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteDepartmentById(@PathVariable Integer id) {
         Optional<Department> department = departmentService.getDepartmentById(id);
         if (department.isPresent()) {
             departmentService.deleteDepartmentById(id);

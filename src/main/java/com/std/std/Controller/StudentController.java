@@ -24,7 +24,7 @@ public class StudentController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Student> getStudentById(@PathVariable Long id) {
+    public ResponseEntity<Student> getStudentById(@PathVariable Integer id) {
         Optional<Student> student = studentService.getStudentById(id);
         return student.map(value -> ResponseEntity.ok().body(value))
                 .orElseGet(() -> ResponseEntity.notFound().build());
@@ -37,7 +37,7 @@ public class StudentController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Student> updateStudent(@PathVariable Long id, @RequestBody Student student) {
+    public ResponseEntity<Student> updateStudent(@PathVariable Integer id, @RequestBody Student student) {
         Optional<Student> existingStudent = studentService.getStudentById(id);
         if (existingStudent.isPresent()) {
             Student updatedStudent = existingStudent.get();
@@ -50,10 +50,12 @@ public class StudentController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteStudentById(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteStudentById(@PathVariable Integer id) {
         Optional<Student> student = studentService.getStudentById(id);
         if (student.isPresent()) {
             studentService.deleteStudentById(id);
+
+
             return ResponseEntity.ok().build();
         } else {
             return ResponseEntity.notFound().build();

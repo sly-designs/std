@@ -18,7 +18,7 @@ public class DepartmentService {
         return (List<Department>) departmentRepository.findAll();
     }
 
-    public Optional<Department> getDepartmentById(Long id) {
+    public Optional<Department> getDepartmentById(Integer id) {
         return departmentRepository.findById(id);
     }
 
@@ -26,7 +26,7 @@ public class DepartmentService {
         return departmentRepository.save(department);
     }
 
-    public void deleteDepartmentById(Long id) {
+    public void deleteDepartmentById(Integer id) {
         departmentRepository.deleteById(id);
     }
 

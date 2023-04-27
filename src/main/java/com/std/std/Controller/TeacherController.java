@@ -27,13 +27,13 @@ public class TeacherController {
     }
 
     // Get teacher by id
-    @GetMapping("/{id}")
-    public ResponseEntity<Teacher> getTeacherById(@PathVariable Long id) {
-        Optional<Teacher> teacher = teacherService.getTeacherById(id);
-        return teacher.map(value -> ResponseEntity.ok().body(value))
-                .orElseGet(() -> ResponseEntity.notFound().build());
-                new ResponseEntity<>(teacher, HttpStatus.OK);
-    }
+//    @GetMapping("/{id}")
+//    public ResponseEntity<Teacher> getTeacherById(@PathVariable Long id) {
+//        Optional<Teacher> teacher = teacherService.getTeacherById(id);
+//        return teacher.map(value -> ResponseEntity.ok().body(value))
+//                .orElseGet(() -> ResponseEntity.notFound().build());
+//                new ResponseEntity<>(teacher, HttpStatus.OK);
+//    }
 
       // Create a new teacher
     @PostMapping("")
@@ -45,7 +45,7 @@ public class TeacherController {
 
     // Update an existing teacher by id
     @PutMapping("/{id}")
-    public ResponseEntity<Teacher> updateTeacher(@PathVariable Long id, @RequestBody Teacher teacher) {
+    public ResponseEntity<Teacher> updateTeacher(@PathVariable Integer id, @RequestBody Teacher teacher) {
 
         Optional<Teacher> existingTeacher = teacherService.getTeacherById(id);
         if (existingTeacher.isPresent()) {
@@ -61,7 +61,7 @@ public class TeacherController {
      // Delete a teacher by id
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteTeacherById(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteTeacherById(@PathVariable Integer id) {
         Optional<Teacher> teacher = teacherService.getTeacherById(id);
         if (teacher.isPresent()) {
             teacherService.deleteTeacherById(id);

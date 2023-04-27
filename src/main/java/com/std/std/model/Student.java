@@ -7,8 +7,17 @@ import jakarta.persistence.*;
 @Table(name = "student")
 public class Student {
 
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Id
+    @SequenceGenerator(
+            sequenceName = "student_seq",
+            allocationSize = 1,
+            name = "student_seq"
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "student_seq"
+    )
+    private Integer id;
 
     @Column(name = "name")
     private String name;
@@ -20,11 +29,11 @@ public class Student {
         this.name = name;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

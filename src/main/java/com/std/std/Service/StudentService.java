@@ -17,7 +17,7 @@ public class StudentService {
         return (List<Student>) studentRepository.findAll();
     }
 
-    public Optional<Student> getStudentById(Long id) {
+    public Optional<Student> getStudentById(Integer id) {
         return studentRepository.findById(id);
     }
 
@@ -25,7 +25,7 @@ public class StudentService {
         return studentRepository.save(student);
     }
 
-    public void deleteStudentById(Long id) {
+    public void deleteStudentById(Integer id) {
         studentRepository.deleteById(id);
     }
 
